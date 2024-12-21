@@ -1,11 +1,8 @@
 import { useState, useEffect } from "react";
-import Spinner from "../pages/Spinner";
-
 
 const Fetch = () => {
     const [comments, setComments] = useState([]);
     const [photos, setPhotos] = useState([]);
-    const [loading, setLoading] = useState(true);
     useEffect(() => {    
       Promise.all ([
         fetch('https://jsonplaceholder.typicode.com/comments?_limit=10'),
@@ -19,27 +16,13 @@ const Fetch = () => {
             console.log(comments, photos);
             setComments(dataComments);
             setPhotos(dataPhotos)
-            setLoading(false);
          })
          .catch(err => {
             console.log('Error from Fetch');
          })
 
     }, [comments, photos]);
-    let listContent = [comments, photos];
-
-    if(loading) {
-      listContent   = <div className="list-msg"><Spinner/></div>;
-    }
-    else if (listContent.length === 0) {
-        listContent = <div className="list-msg">No list added</div>
-    }
-    else {
-        listContent = [comments, photos].map(([comments, photos], k) =>
-            <Spinner  key={k} />
-        );
-    }
-   
+    
     return (
         <>
          <div>
