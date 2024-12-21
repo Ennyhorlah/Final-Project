@@ -1,12 +1,15 @@
 import { useState, useEffect } from "react";
+import Spinner from "../pages/Spinner";
+
 
 const Fetch = () => {
     const [comments, setComments] = useState([]);
     const [photos, setPhotos] = useState([]);
-    useEffect(() => {
+    const [loading, setLoading] = useState(true);
+    useEffect(() => {    
       Promise.all ([
         fetch('https://jsonplaceholder.typicode.com/comments?_limit=10'),
-        fetch('https://jsonplaceholder.typicode.com/photos?_limit=50'),  
+        fetch('https://jsonplaceholder.typicode.com/albums/1/photos'),  
       ])
         
          .then(([resComments, resPhotos]) => 
@@ -15,12 +18,31 @@ const Fetch = () => {
          .then(([dataComments, dataPhotos]) => {
             console.log(comments, photos);
             setComments(dataComments);
-            setPhotos(dataPhotos);
-         });
+            setPhotos(dataPhotos)
+            setLoading(false);
+         })
+         .catch(err => {
+            console.log('Error from Fetch');
+         })
+
     }, [comments, photos]);
+    let listContent = [comments, photos];
+
+    if(loading) {
+      listContent   = <div className="list-msg"><Spinner/></div>;
+    }
+    else if (listContent.length === 0) {
+        listContent = <div className="list-msg">No list added</div>
+    }
+    else {
+        listContent = [comments, photos].map(([comments, photos], k) =>
+            <Spinner  key={k} />
+        );
+    }
+   
     return (
         <>
-             <div>
+         <div>
             <h1 className="flex justify-center font-bold text-2xl text-blue-700 mx-3 my-4 py-2 rounded-md">Email address of Users</h1>
             {comments.map((comment) => (
                   <h2 key={comment.id}className="font-normal align-bottom items-baseline text-justify text-slate-500 ">{comment.id}.{comment.email}

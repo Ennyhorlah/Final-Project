@@ -1,13 +1,18 @@
 import React from 'react'
 import Fetch from '../components/Fetch'
+import Spinner from 'react-spinner'
 
 const Home = () => {
+    
   return (
-    <div>
+      <div class="bg-gray-200 text-2xl p-4">
 
-     <Fetch /> 
-    </div>
-  )
+        <Fetch /> 
+        <Spinner />
+     </div>
+     
+ 
+  );
 }
 
 export default Home

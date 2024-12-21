@@ -4,13 +4,10 @@ import Home from "./pages/Home";
 import Layout from "./pages/Layout";
 import About from "./pages/About";
 import ContactUs from "./pages/ContactUs";
-import Fetch from "./components/Fetch";
-
-
 
 const App= () => {
   return (  
-    <>
+    
      <BrowserRouter>
     <Routes>
      <Route path="/" element={<Layout />}>
@@ -19,13 +16,9 @@ const App= () => {
      <Route path="/contactus" element={<ContactUs />}></Route>  
      </Route>     
     </Routes>
-   </BrowserRouter>
-
-   <Fetch />
-    </>
+   </BrowserRouter> 
    
-  ) 
-  
+  )  
   
 }
 
