@@ -5,7 +5,7 @@ import Spinner from 'react-spinner'
 const Home = () => {
     
   return (
-      <div class="bg-gray-200 text-2xl p-4">
+      <div className="bg-gray-200 text-2xl p-4">
 
         <Fetch /> 
         <Spinner />

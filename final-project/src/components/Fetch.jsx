@@ -34,7 +34,7 @@ const Fetch = () => {
             ))}
         </div>
        
-        <h3 class="flex justify-center font-bold text-2xl text-blue-700 mx-3 my-4 py-2 p-4 rounded-md"> Photos of Users</h3>
+        <h3 className="flex justify-center font-bold text-2xl text-blue-700 mx-3 my-4 py-2 p-4 rounded-md"> Photos of Users</h3>
         <div className="container mx-auto p-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {photos.map((photo) => (
             <img key={photo.id} src={photo.url} alt={photo.title} width={100}/>
